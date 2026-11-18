@@ -76,12 +76,14 @@ def _arcs_geometry(net, arcs):
 
 @app.get("/health")
 def health():
+    """Health check returning loaded ML model type, HMM tuning parameters, and partition size."""
     return {"status": "ok", "model": engine.cfg["model_name"], "params_source": engine.cfg["params_source"],
             "partition": PARTITION, "n_trips": len(io.list_trips(PARTITION)), "hmm": engine.cfg["hmm"]}
 
 
 @app.get("/trips")
 def trips():
+    """Enumerate available evaluation trip identifiers without exposing reference routes (zero leakage)."""
     ids = io.list_trips(PARTITION)
     log.info("GET /trips -> %d trips", len(ids))
     return {"partition": PARTITION, "trips": ids}
