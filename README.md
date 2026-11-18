@@ -200,3 +200,20 @@ tuned on out-of-fold training trips). See `results/hmm/`.
 The HMM improved all 10 student-testing trips and 38 of the 40 training trips
 used for tuning. Folium maps for every student-testing trip are in
 `results/maps/`.
+
+## Distributed Deployment (Laptop 1 & Laptop 2)
+
+The system is designed for two-laptop evaluation across a local network (Wi-Fi or mobile hotspot):
+
+### Laptop 1: Backend API Service
+1. Bind to all interfaces on port `8000`:
+   ```bash
+   uvicorn api.main:app --host 0.0.0.0 --port 8000
+   ```
+2. Find Laptop 1's local IP address (`ipconfig getifaddr en0` on macOS).
+3. The API loads the trained XGBoost model and configuration into memory on startup and serves `/health`, `/trips`, and `/predict`.
+
+### Laptop 2: Evaluator UI Dashboard
+1. Open `ui/index.html` in any web browser.
+2. In the "API address" input box, enter `http://<Laptop-1-IP>:8000` and click **Connect**.
+3. Select any evaluation trip from the sidebar to visualize raw GPS observations, candidate corridors, and the snapped HMM route with real-time metrics.
