@@ -1,0 +1,67 @@
+train rows=1,554,592 trips=80  test rows=163,779
+skip logistic_regression (exists)
+  [gaussian_nb] fold 0: f1_macro=0.7831 top1=0.8587 logloss=1.1080 fit=0.2s
+  [gaussian_nb] fold 1: f1_macro=0.8354 top1=0.8227 logloss=0.5867 fit=0.2s
+  [gaussian_nb] fold 2: f1_macro=0.8155 top1=0.8789 logloss=0.8253 fit=0.2s
+  [gaussian_nb] fold 3: f1_macro=0.7893 top1=0.8631 logloss=0.8518 fit=0.1s
+  [gaussian_nb] fold 4: f1_macro=0.7810 top1=0.8332 logloss=1.1196 fit=0.1s
+== gaussian_nb: cv_top1=0.8513 test_top1=0.8689 (2s)
+  [knn] fold 0: f1_macro=0.9146 top1=0.8661 logloss=0.1691 fit=0.0s
+  [knn] fold 1: f1_macro=0.9092 top1=0.8540 logloss=0.1209 fit=0.0s
+  [knn] fold 2: f1_macro=0.9322 top1=0.8906 logloss=0.1105 fit=0.0s
+  [knn] fold 3: f1_macro=0.9142 top1=0.8537 logloss=0.1177 fit=0.0s
+  [knn] fold 4: f1_macro=0.9064 top1=0.8411 logloss=0.2105 fit=0.0s
+== knn: cv_top1=0.8611 test_top1=0.8760 (129s)
+  [decision_tree] fold 0: f1_macro=0.9179 top1=0.8609 logloss=0.1214 fit=11.0s
+  [decision_tree] fold 1: f1_macro=0.8735 top1=0.8648 logloss=0.1072 fit=11.1s
+  [decision_tree] fold 2: f1_macro=0.9425 top1=0.9053 logloss=0.0692 fit=10.5s
+  [decision_tree] fold 3: f1_macro=0.9207 top1=0.8778 logloss=0.0858 fit=10.5s
+  [decision_tree] fold 4: f1_macro=0.9066 top1=0.8400 logloss=0.1300 fit=10.6s
+== decision_tree: cv_top1=0.8698 test_top1=0.8808 (69s)
+  [random_forest] fold 0: f1_macro=0.9248 top1=0.8771 logloss=0.0968 fit=36.8s
+  [random_forest] fold 1: f1_macro=0.9243 top1=0.8684 logloss=0.1035 fit=35.9s
+  [random_forest] fold 2: f1_macro=0.9437 top1=0.9080 logloss=0.0579 fit=41.9s
+  [random_forest] fold 3: f1_macro=0.9314 top1=0.8802 logloss=0.0693 fit=45.8s
+  [random_forest] fold 4: f1_macro=0.9133 top1=0.8531 logloss=0.0990 fit=45.0s
+== random_forest: cv_top1=0.8774 test_top1=0.8922 (258s)
+  [extra_trees] fold 0: f1_macro=0.9227 top1=0.8759 logloss=0.0942 fit=15.6s
+  [extra_trees] fold 1: f1_macro=0.9260 top1=0.8662 logloss=0.0841 fit=17.3s
+  [extra_trees] fold 2: f1_macro=0.9419 top1=0.9049 logloss=0.0624 fit=17.8s
+  [extra_trees] fold 3: f1_macro=0.9276 top1=0.8742 logloss=0.0744 fit=17.4s
+  [extra_trees] fold 4: f1_macro=0.9132 top1=0.8515 logloss=0.1014 fit=15.4s
+== extra_trees: cv_top1=0.8746 test_top1=0.8877 (107s)
+  [hist_gradient_boosting] fold 0: f1_macro=0.9230 top1=0.8721 logloss=0.1001 fit=5.4s
+  [hist_gradient_boosting] fold 1: f1_macro=0.8873 top1=0.8658 logloss=0.1047 fit=4.6s
+  [hist_gradient_boosting] fold 2: f1_macro=0.9437 top1=0.9064 logloss=0.0602 fit=3.3s
+  [hist_gradient_boosting] fold 3: f1_macro=0.9302 top1=0.8781 logloss=0.0695 fit=4.1s
+  [hist_gradient_boosting] fold 4: f1_macro=0.9075 top1=0.8437 logloss=0.1092 fit=3.5s
+== hist_gradient_boosting: cv_top1=0.8732 test_top1=0.8873 (28s)
+  [lightgbm] fold 0: f1_macro=0.9219 top1=0.8704 logloss=0.0991 fit=9.7s
+  [lightgbm] fold 1: f1_macro=0.9257 top1=0.8729 logloss=0.0756 fit=9.8s
+  [lightgbm] fold 2: f1_macro=0.9448 top1=0.9073 logloss=0.0597 fit=9.3s
+  [lightgbm] fold 3: f1_macro=0.9275 top1=0.8759 logloss=0.0700 fit=9.1s
+  [lightgbm] fold 4: f1_macro=0.9081 top1=0.8449 logloss=0.1059 fit=9.0s
+== lightgbm: cv_top1=0.8743 test_top1=0.8900 (64s)
+  [xgboost] fold 0: f1_macro=0.9242 top1=0.8750 logloss=0.0942 fit=8.5s
+  [xgboost] fold 1: f1_macro=0.9214 top1=0.8701 logloss=0.0778 fit=9.2s
+  [xgboost] fold 2: f1_macro=0.9446 top1=0.9089 logloss=0.0586 fit=8.6s
+  [xgboost] fold 3: f1_macro=0.9237 top1=0.8790 logloss=0.0712 fit=7.9s
+  [xgboost] fold 4: f1_macro=0.9101 top1=0.8490 logloss=0.1033 fit=7.7s
+== xgboost: cv_top1=0.8764 test_top1=0.8983 (56s)
+  [mlp] fold 0: f1_macro=0.9175 top1=0.8684 logloss=0.1014 fit=6.3s
+  [mlp] fold 1: f1_macro=0.8717 top1=0.8668 logloss=0.1028 fit=7.8s
+  [mlp] fold 2: f1_macro=0.9395 top1=0.9019 logloss=0.0650 fit=6.7s
+  [mlp] fold 3: f1_macro=0.9225 top1=0.8757 logloss=0.0758 fit=7.7s
+  [mlp] fold 4: f1_macro=0.9047 top1=0.8422 logloss=0.1068 fit=5.3s
+== mlp: cv_top1=0.8710 test_top1=0.8874 (45s)
+                 model                      family  cv_f1_macro  cv_f1_macro_std  cv_top1  cv_log_loss  test_top1  test_f1_macro  test_precision_macro  test_recall_macro  test_log_loss  test_route_continuity  test_candidate_miss_rate  fit_seconds  infer_ms_per_1k_rows
+         random_forest          Ensemble (bagging)     0.927503         0.009983 0.877365     0.085310   0.892180       0.935263              0.941203           0.929537       0.065855               0.955070                  0.001045    46.928698              2.186337
+               xgboost                    Boosting     0.924782         0.011128 0.876397     0.081028   0.898292       0.936678              0.942054           0.931478       0.063230               0.958277                  0.001045    10.596023              0.838386
+           extra_trees Ensemble (randomised trees)     0.926282         0.009271 0.874551     0.083336   0.887687       0.930920              0.938350           0.923825       0.069895               0.955009                  0.001045    16.271916              3.098003
+              lightgbm                    Boosting     0.925583         0.011758 0.874273     0.082074   0.889986       0.934908              0.937180           0.932668       0.075480               0.943647                  0.001045    10.196603              2.544459
+hist_gradient_boosting                    Boosting     0.918363         0.019420 0.873219     0.088726   0.887322       0.932433              0.936097           0.928853       0.070020               0.952609                  0.001045     3.817717              0.413508
+                   mlp              Neural network     0.911173         0.022702 0.871010     0.090362   0.887374       0.930434              0.940209           0.921230       0.068129               0.956218                  0.001045     9.079631              0.098010
+         decision_tree                  Tree-based     0.912250         0.022606 0.869757     0.102718   0.880792       0.928791              0.935168           0.922664       0.074439               0.950309                  0.001045    13.788869              0.043681
+   logistic_regression      Linear / probabilistic     0.921449         0.009270 0.868748     0.096068   0.881001       0.927712              0.926738           0.928693       0.084577               0.947008                  0.001045     1.226988              0.038344
+                   knn              Instance-based     0.915312         0.008971 0.861086     0.145720   0.875986       0.922739              0.920173           0.925348       0.117131               0.940236                  0.001045     0.018650             75.051937
+           gaussian_nb  Probabilistic (generative)     0.800864         0.021218 0.851341     0.898296   0.868934       0.802967              0.755788           0.915558       0.856921               0.941292                  0.001045     0.246770              0.083932
