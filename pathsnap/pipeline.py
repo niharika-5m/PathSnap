@@ -16,12 +16,15 @@ from .hmm import build_route, classifier_only, point_continuity, route_metrics, 
 
 
 class PathSnap:
+    """Inference engine caching the trained ML classifier and pipeline configuration."""
+
     def __init__(self, artifact_dir=config.ARTIFACT_DIR):
         self.model = joblib.load(artifact_dir / "model.joblib")
         self.cfg = json.loads((artifact_dir / "pipeline_config.json").read_text())
         assert self.cfg["features"] == FEATURES, "feature list changed since the model was exported"
 
     def predict(self, partition: str, trip_id: str) -> dict:
+        """Run candidate generation, feature extraction, ML scoring, and HMM Viterbi decoding."""
         timings = {}
         t0 = time.time()
         ctx = prepare_trip(partition, trip_id, **self.cfg["candidates"])
@@ -41,7 +44,9 @@ class PathSnap:
 
 
 def evaluate(partition: str, trip_id: str, pred: dict) -> dict:
-    """Compare a prediction with the server-side reference route."""
+    """Compare an inference prediction against the server-side reference route.
+    Calculates point accuracy, topological continuity, and route-level F1 metrics.
+    """
     from .labels import align_route
     ctx = pred["ctx"]
     ref_route = io.load_route(partition, trip_id)
