@@ -91,13 +91,18 @@ def trips():
 
 @app.post("/predict")
 def predict(req: PredictRequest):
+    """Execute end-to-end inference and zero-leakage server-side scoring for a single trip."""
     if req.trip_id not in io.list_trips(PARTITION):
         raise HTTPException(status_code=404, detail=f"unknown trip {req.trip_id}")
     log.info("POST /predict trip=%s : running pipeline", req.trip_id)
+
+    # 1. End-to-end inference (features -> classifier -> HMM Viterbi)
     t0 = time.time()
     pred = engine.predict(PARTITION, req.trip_id)
     predict_s = time.time() - t0
     ctx = pred["ctx"]
+
+    # 2. Server-side zero-leakage evaluation against secret ground truth
     t1 = time.time()
     scores = evaluate(PARTITION, req.trip_id, pred)   # server-side only
     eval_s = time.time() - t1
@@ -107,6 +112,7 @@ def predict(req: PredictRequest):
              scores["hmm_point_accuracy"], scores["route_f1"], predict_s, pred["timings"]["features_s"],
              pred["timings"]["classifier_s"], pred["timings"]["hmm_s"], eval_s)
 
+    # 3. Build baseline classifier route and format GeoJSON response payload
     clf_route = build_route(ctx.net, pred["classifier_arcs"])
     return {
         "trip_id": req.trip_id,
