@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PathSnap Evaluator</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside id="panel">
+    <h1>PathSnap</h1>
+    <p class="sub">Map-matching &amp; route reconstruction</p>
+
+    <label for="api">API address (Laptop 1)</label>
+    <div class="row">
+      <input id="api" type="text" placeholder="http://192.168.x.x:8000">
+      <button id="connect">Connect</button>
+    </div>
+    <div id="status" class="status">Not connected</div>
+
+    <h2>Evaluation trips</h2>
+    <div id="trips" class="trips"></div>
+
+    <h2>Results</h2>
+    <div id="results" class="results"><p class="muted">Select a trip to run the pipeline.</p></div>
+  </aside>
+  <main id="map"></main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
