@@ -74,6 +74,18 @@ def _arcs_geometry(net, arcs):
     return np.round(np.stack([a, b], axis=1), 6).tolist()
 
 
+@app.get("/")
+def root():
+    """Service status landing endpoint for network diagnostic pings."""
+    return {
+        "service": "PathSnap API",
+        "status": "running",
+        "partition": PARTITION,
+        "n_trips": len(io.list_trips(PARTITION)),
+        "docs": "/docs",
+    }
+
+
 @app.get("/health")
 def health():
     """Health check returning loaded ML model type, HMM tuning parameters, and partition size."""
