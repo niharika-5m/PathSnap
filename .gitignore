@@ -1,0 +1,17 @@
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Raw dataset (do not upload huge datasets)
+train/
+student_test/
+evaluator_test/
+
+# Generated outputs
+cleaned/
+*.png
+*.csv
+
+# Mac
+.DS_Store
