@@ -4,14 +4,23 @@ __pycache__/
 *.pyc
 
 # Raw dataset (do not upload huge datasets)
+data
+data/
 train/
 student_test/
 evaluator_test/
 
-# Generated outputs
+# Generated intermediates (rebuilt by scripts/02_build_dataset.py)
+cache/
 cleaned/
-*.png
-*.csv
+
+# Root-level outputs of the early exploration scripts (eda.py, clean_data.py).
+# results/ is NOT ignored: its CSVs, plots and maps are part of the submission.
+/*.png
+/*.csv
+
+# Local tooling
+.claude/
 
 # Mac
 .DS_Store
