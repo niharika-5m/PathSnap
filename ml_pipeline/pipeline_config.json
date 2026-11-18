@@ -1,0 +1,57 @@
+{
+ "model_name": "xgboost",
+ "model_params": {
+  "n_estimators": 300,
+  "learning_rate": 0.015352194511246175,
+  "max_depth": 7,
+  "subsample": 0.5757637706826141,
+  "colsample_bytree": 0.8803950834773883,
+  "tree_method": "hist",
+  "random_state": 42,
+  "n_jobs": -1,
+  "eval_metric": "logloss",
+  "min_child_weight": 1.8923873727503393,
+  "reg_lambda": 0.7644106830373096
+ },
+ "params_source": "bayesian-optimised",
+ "trained_on": "train partition (80 trips), reliable labels only",
+ "features": [
+  "dist",
+  "dist_rank",
+  "dist_minus_min",
+  "dist_ratio",
+  "win_dist",
+  "win_dist_rank",
+  "win_dist_minus_min",
+  "heading_diff",
+  "heading_cos",
+  "stationary",
+  "speed",
+  "log_arc_len",
+  "t_along",
+  "on_segment",
+  "n_cand",
+  "dt_prev",
+  "dt_next",
+  "jump_prev",
+  "conn_prev",
+  "conn_next",
+  "has_reverse",
+  "out_deg",
+  "in_deg"
+ ],
+ "candidates": {
+  "radius": 60.0,
+  "max_k": 12,
+  "min_k": 3
+ },
+ "hmm": {
+  "beta": 5.0,
+  "emission_power": 0.5,
+  "gap_seconds": 180.0,
+  "max_speed_mps": 50.0,
+  "unreachable_logp": -30.0,
+  "top_m": 8
+ },
+ "label_max_dist_m": 100.0
+}
