@@ -38,15 +38,19 @@ log.info("Loaded model '%s' (%s). Serving partition '%s' with %d trips.",
 
 
 class PredictRequest(BaseModel):
+    """Request schema for trip trajectory prediction and server-side evaluation."""
     trip_id: str
 
 
-def _round(a, nd=6):
+def _round(a, nd: int = 6):
+    """Round coordinate arrays to fixed decimal precision (default 6 ~ 11cm)."""
     return np.round(np.asarray(a, dtype=float), nd).tolist()
 
 
 def _route_polylines(net, route):
-    """Arc list -> list of [lat, lon] polylines (new polyline where arcs are not connected)."""
+    """Convert arc sequence into continuous [lat, lon] polylines.
+    Splits into separate sub-polylines whenever adjacent arcs are topologically disconnected.
+    """
     lines, cur = [], []
     for k, a in enumerate(route):
         s, d = int(net.src[a]), int(net.dst[a])
@@ -61,6 +65,7 @@ def _route_polylines(net, route):
 
 
 def _arcs_geometry(net, arcs):
+    """Extract distinct road segments as line coordinates [[lat1, lon1], [lat2, lon2]]."""
     arcs = np.asarray(sorted(set(int(a) for a in arcs)))
     if len(arcs) == 0:
         return []
