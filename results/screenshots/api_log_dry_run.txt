@@ -1,0 +1,22 @@
+$ PATHSNAP_EVAL_PARTITION=student_test uvicorn api.main:app --host 0.0.0.0 --port 8000
+2026-11-18 15:55:30,565 | INFO | Loaded model 'xgboost' (bayesian-optimised). Serving partition 'student_test' with 10 trips.
+INFO:     Started server process [21433]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54996 - "GET /health HTTP/1.1" 200 OK
+2026-11-18 15:55:30,817 | INFO | GET /trips -> 10 trips
+INFO:     127.0.0.1:54998 - "GET /trips HTTP/1.1" 200 OK
+2026-11-18 15:55:30,824 | INFO | POST /predict trip=00000056 : running pipeline
+2026-11-18 15:55:31,242 | INFO | trip=00000056 points=3958 candidates=38205 | classifier acc=0.9150 | HMM acc=0.9650 | route F1=0.9813 | predict 0.26s (features 0.11s, classifier 0.02s, hmm 0.13s) eval 0.16s
+INFO:     127.0.0.1:55000 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:55:31,371 | INFO | POST /predict trip=00000077 : running pipeline
+2026-11-18 15:55:31,672 | INFO | trip=00000077 points=3911 candidates=40240 | classifier acc=0.7487 | HMM acc=0.8806 | route F1=0.9879 | predict 0.24s (features 0.10s, classifier 0.02s, hmm 0.13s) eval 0.06s
+INFO:     127.0.0.1:55003 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:55:31,696 | INFO | POST /predict trip=00000000 : running pipeline
+2026-11-18 15:55:31,878 | INFO | trip=00000000 points=2503 candidates=13824 | classifier acc=0.9521 | HMM acc=0.9652 | route F1=0.9944 | predict 0.15s (features 0.10s, classifier 0.01s, hmm 0.05s) eval 0.03s
+INFO:     127.0.0.1:55005 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:55:31,901 | INFO | POST /predict trip=00000091 : running pipeline
+2026-11-18 15:55:31,982 | INFO | trip=00000091 points=874 candidates=8868 | classifier acc=0.9073 | HMM acc=0.9405 | route F1=0.9865 | predict 0.07s (features 0.03s, classifier 0.00s, hmm 0.03s) eval 0.01s
+INFO:     127.0.0.1:55007 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55009 - "POST /predict HTTP/1.1" 404 Not Found

@@ -36,6 +36,8 @@ scripts/
   05_export_model.py       fits the final model, writes artifacts/
   06_tune_hmm.py           decoder tuning + classifier-only vs HMM comparison
   07_maps.py               Folium maps of predictions vs reference
+  08_fit_diagnostics.py    in-sample vs CV vs student-test scores (overfitting check), confusion grid
+  09_concept_figures.py    explanatory figures from real data (nodes/arcs, candidates, transition, trellis)
 api/main.py                FastAPI backend (Laptop 1)
 ui/                        evaluator web UI (Laptop 2): index.html, app.js, style.css
 artifacts/                 model.joblib + pipeline_config.json (used by the API)
@@ -73,11 +75,16 @@ Run these from the repository root, in order:
 python scripts/01_eda.py              # results/eda/
 python scripts/02_build_dataset.py    # cache/*.parquet, results/dataset/
 python scripts/03_compare_models.py   # results/models/
-python scripts/04_bayes_opt.py        # results/bayes_opt/ (tunes the best model by CV Top-1)
+python scripts/04_bayes_opt.py xgboost  # results/bayes_opt/ (with no argument it would tune the top CV Top-1 model, random forest)
 python scripts/05_export_model.py     # artifacts/model.joblib, artifacts/pipeline_config.json
 python scripts/06_tune_hmm.py         # results/hmm/, writes decoder params into the config
 python scripts/07_maps.py             # results/maps/*.html
+python scripts/08_fit_diagnostics.py  # results/models/train_vs_cv.csv + plots
+python scripts/09_concept_figures.py  # results/concepts/*.png
 ```
+
+`results/screenshots/` holds screenshots of the running system (UI and API log)
+used in the report.
 
 Random seeds are fixed in `pathsnap/config.py` (`SEED = 42`).
 
