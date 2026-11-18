@@ -6,8 +6,8 @@ let API = params.get("api") || localStorage.getItem("pathsnap_api") || "http://l
 $("api").value = API;
 
 const map = L.map("map", { preferCanvas: true }).setView([20, 0], 2);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19, attribution: "&copy; OpenStreetMap contributors",
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 19, attribution: "Tiles &copy; Esri &mdash; OpenStreetMap contributors",
 }).addTo(map);
 
 const layers = {
