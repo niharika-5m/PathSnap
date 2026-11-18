@@ -1,0 +1,3 @@
+partition,trips,gps_points,nodes,arcs,route_arcs,track_km,median_points,trips_with_gap_60s
+student_test,10,19160,90689,185041,3477,296.9678162623149,1420.0,1
+train,80,208417,1933485,3876904,31336,2978.415085891347,1529.0,22
