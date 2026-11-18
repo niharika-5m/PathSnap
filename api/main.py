@@ -30,7 +30,14 @@ log = logging.getLogger("pathsnap.api")
 PARTITION = os.environ.get("PATHSNAP_EVAL_PARTITION", "evaluator_test")
 
 app = FastAPI(title="PathSnap API", version="1.0")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+# Enable CORS access for Laptop 2 (evaluator web UI) across local area network
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 engine = PathSnap()
 log.info("Loaded model '%s' (%s). Serving partition '%s' with %d trips.",
